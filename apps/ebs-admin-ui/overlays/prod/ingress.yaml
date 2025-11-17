@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ebs-admin-ui
+  namespace: ebs
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.tls: "true"
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: admin.ebs.apps.corp
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: ebs-admin-ui
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - admin.ebs.apps.corp
+      secretName: ebs-apps-corp-tls

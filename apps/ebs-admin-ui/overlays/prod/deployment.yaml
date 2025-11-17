@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ebs-admin-ui
+  namespace: ebs
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ebs-admin-ui
+  template:
+    metadata:
+      labels:
+        app: ebs-admin-ui
+    spec:
+      containers:
+        - name: ebs-admin-ui
+          image: registry.ebs.apps.corp/ebs-admin-ui:v1.0.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: media
+              mountPath: /usr/share/nginx/html/media/
+      volumes:
+        - name: media
+          hostPath:
+            path: /data/media

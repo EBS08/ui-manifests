@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ebs-admin-ui
+  namespace: ebs
+spec:
+  type: ClusterIP
+  selector:
+    app: ebs-admin-ui
+  ports:
+    - port: 80
+      targetPort: 80
