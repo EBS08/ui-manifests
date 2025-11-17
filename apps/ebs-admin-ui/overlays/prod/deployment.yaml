@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: ebs-admin-ui
-          image: registry.ebs.apps.corp/ebs-admin-ui:v1.0.5
+          image: registry.ebs.apps.corp/ebs-admin-ui:v1.0.6
           ports:
             - containerPort: 80
           volumeMounts:
